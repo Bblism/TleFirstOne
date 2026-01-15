@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ถามคำถามสำคัญ ❤️</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ffebee;
+            font-family: 'Kanit', sans-serif;
+            overflow: hidden;
+        }
+
+        h1 {
+            color: #d32f2f;
+            margin-bottom: 30px;
+            transition: 0.3s;
+            text-align: center;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.2s ease-in-out;
+        }
+
+        #yesBtn {
+            background-color: #4caf50;
+            color: white;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+        }
+
+        #noBtn {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .success-msg {
+            display: none;
+            color: #d32f2f;
+            font-size: 2rem;
+            animation: heartBeat 1.2s infinite;
+        }
+
+        @keyframes heartBeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="mainContent">
+        <h1 id="question">เป็นแฟนกับพี่ไหมครับ เจ้าcharน้อยของพี่ ❤️</h1>
+        <div class="buttons">
+            <button id="yesBtn" onclick="celebrate()">Yes</button>
+            <button id="noBtn" onclick="growYes()">No</button>
+        </div>
+    </div>
+
+    <div id="success" class="success-msg">
+        เย้! เราเป็นแฟนกันแล้วนะครับ พี่รักน้องเฉินนะ ❤️🌹
+    </div>
+
+    <script>
+        let fontSize = 18;
+        let paddingVertical = 15;
+        let paddingHorizontal = 30;
+
+        function growYes() {
+            const yesBtn = document.getElementById('yesBtn');
+            const noBtn = document.getElementById('noBtn');
+            const question = document.getElementById('question');
+
+            // เพิ่มขนาดฟอนต์และช่องว่าง
+            fontSize += 25;
+            paddingVertical += 10;
+            paddingHorizontal += 20;
+
+            yesBtn.style.fontSize = fontSize + 'px';
+            yesBtn.style.padding = `${paddingVertical}px ${paddingHorizontal}px`;
+
+            // เพิ่มความกวน: เปลี่ยนคำที่หัวข้อ
+            if (fontSize > 100) {
+                question.innerText = "ยังจะกด No อีกเหรอ! พี่ไม่ยอมให้น้องกดหรอก 😤";
+            }
+            if (fontSize > 200) {
+                noBtn.style.display = 'none'; // ซ่อนปุ่ม No ไปเลย
+                question.innerText = "ไม่มีทางเลือกแล้วแหละครับเจ้าตัวน้อย  กด Yes เถอะ! 😂";
+            }
+        }
+
+        function celebrate() {
+            document.getElementById('mainContent').style.display = 'none';
+            document.getElementById('success').style.display = 'block';
+            document.body.style.backgroundColor = '#fce4ec';
+        }
+    </script>
+</body>
+</html>
